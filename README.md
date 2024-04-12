@@ -1,3 +1,7 @@
+This file is for security coursework
+This doc helps to generate a ddos simulation and detection in two virtual machines.
+
+
 
 Configure Network Interface
 Run 'ifconfig' to check the current network interface configuration.
