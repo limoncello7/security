@@ -32,7 +32,6 @@ def extract_data(line):
     time_pattern = r"(\d{2}/\d{2}-\d{2}:\d{2}:\d{2}\.\d{6})"
     ip_port_pattern = r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):(\d+)"
     
-    # 将正则表达式组合在一起以匹配整个日志行
     pattern = time_pattern + r".+\[.+\]\s+\[.+\]\s+.+\s+\{TCP\}\s+" + ip_port_pattern + r" -> " + ip_port_pattern
 
     match = re.search(pattern, line)
