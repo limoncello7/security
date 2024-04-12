@@ -14,7 +14,6 @@ with open('snort.alert.fast') as file:
 
 threshold = 1  
 
-# 过去多长时间内的连接尝试
 time_window = 60
 read_log_file=log_path
 
@@ -30,7 +29,6 @@ read_log_file=log_path
 import re
 
 def extract_data(line):
-    # 匹配时间戳、源IP、目的IP和目的端口
     time_pattern = r"(\d{2}/\d{2}-\d{2}:\d{2}:\d{2}\.\d{6})"
     ip_port_pattern = r"(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}):(\d+)"
     
@@ -39,7 +37,7 @@ def extract_data(line):
 
     match = re.search(pattern, line)
     if match:
-        # 提取源IP、目的IP和目的端口
+
         return {
             'time': match.group(1),
             'src_ip': match.group(2),
@@ -55,11 +53,11 @@ def detect_syn_flood(log_file_content, threshold, time_window):
     print(f"Current time: {current_time}")
     
     for line in log_file_content.splitlines():
-        data = extract_data(line) # 使用data变量接收返回的字典
+        data = extract_data(line) 
 
-        if data:  # 检查data是否非None
+        if data:  
             print(f"Matched log entry: {line}")
-            # 直接从字典中访问值
+  
             time_str = data['time']
             src_ip = data['src_ip']
             dst_ip = data['dst_ip']
